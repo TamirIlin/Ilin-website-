@@ -1,0 +1,865 @@
+:root {
+    --gold: #d4af37;
+    --dark: #1a1a1a;
+    --light: #f4f4f4;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: #000;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gold);
+}
+
+.qr-box {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.qr {
+    width: 40px;
+    /* Маленький размер для меню */
+    height: 40px;
+    background-color: white;
+    padding: 2px;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.qr:hover {
+    transform: scale(1.5);
+    /* Увеличивается при наведении, чтобы можно было отсканировать */
+    z-index: 10;
+}
+
+.header-ul li {
+    font-size: 14px;
+    color: var(--light);
+}
+
+
+.header-ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promo {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.result-card {
+    background: #222;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    margin: 20px auto;
+    max-width: 600px;
+    min-height: 150px;
+}
+
+.numbers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.numbers-grid button {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.numbers-grid button:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+.analytics {
+    background: #111;
+    padding: 60px 0;
+    border-top: 1px solid #333;
+}
+
+.chart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Скролл к аналитике */
+html {
+    scroll-behavior: smooth;
+}
+
+.zodiac-section {
+    padding: 40px 0;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    /* Чтобы таблица не ломалась на мобилках */
+    margin-top: 20px;
+}
+
+.zodiac-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #222;
+    color: var(--light);
+    border: 1px solid var(--gold);
+}
+
+.zodiac-table th,
+.zodiac-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.zodiac-table th {
+    background-color: #000;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.zodiac-table tr:hover {
+    background-color: #2a2a2a;
+    /* Эффект при наведении */
+    transition: 0.3s;
+}
+
+.zodiac-table td {
+    font-size: 15px;
+}
+
+
+footer {
+    background: #000;
+    padding: 40px;
+    margin-top: 50px;
+    border-top: 1px solid var(--gold);
+}
+
+.seasons-section {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.12), transparent 30%),
+        linear-gradient(135deg, #101010 0%, #1c1810 50%, #080808 100%);
+}
+
+.section-heading {
+    max-width: 600px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.section-heading span {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin: 10px 0;
+    color: var(--gold);
+    font-size: clamp(32px, 5vw, 58px);
+    font-family: Georgia, serif;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #aaa;
+}
+
+.season-slider {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    perspective: 1600px;
+}
+
+.season-stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 560px;
+    transform-style: preserve-3d;
+}
+
+.season-slide {
+    position: absolute;
+    width: min(360px, 70vw);
+    height: 500px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition:
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.7s ease,
+        filter 0.7s ease;
+}
+
+.season-slide.active {
+    z-index: 3;
+    transform: translateX(0) scale(1) rotateY(0);
+    opacity: 1;
+    filter: none;
+}
+
+.season-slide.prev {
+    z-index: 2;
+    transform: translateX(-285px) scale(0.78) rotateY(22deg);
+    opacity: 0.55;
+    filter: saturate(0.55) brightness(0.65);
+}
+
+.season-slide.next {
+    z-index: 2;
+    transform: translateX(285px) scale(0.78) rotateY(-22deg);
+    opacity: 0.55;
+    filter: saturate(0.55) brightness(0.65);
+}
+
+.season-slide.hidden-slide {
+    z-index: 1;
+    transform: translateX(0) scale(0.6);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.season-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.season-slide.is-flipped .season-card {
+    transform: rotateY(180deg);
+}
+
+.season-card-front,
+.season-card-back {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.8);
+    border-radius: 22px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+.season-card-front {
+    display: flex;
+    align-items: flex-end;
+    background-position: center;
+    background-size: cover;
+}
+
+.season-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, transparent 25%, rgba(0, 0, 0, 0.85) 100%),
+        linear-gradient(135deg, rgba(212, 175, 55, 0.12), transparent 60%);
+}
+
+.season-front-content {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+}
+
+.season-front-content span {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.season-front-content h3,
+.season-card-back h3 {
+    margin: 10px 0 5px;
+    color: #fff;
+    font: 700 42px Georgia, serif;
+}
+
+.season-front-content p {
+    margin: 0;
+    color: #ddd;
+}
+
+.season-card-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 38px;
+    box-sizing: border-box;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(212, 175, 55, 0.2), transparent 30%),
+        #17130b;
+    text-align: center;
+    transform: rotateY(180deg);
+}
+
+.season-card-back h3 {
+    color: var(--gold);
+}
+
+.season-card-back p {
+    color: #d2d2d2;
+    line-height: 1.8;
+}
+
+.season-card-back strong {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.season-symbol {
+    color: var(--gold);
+    font-size: 38px;
+}
+
+.season-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin-top: 18px;
+}
+
+.season-arrow {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--gold);
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.season-arrow:hover {
+    background: var(--gold);
+    color: #111;
+    transform: scale(1.1);
+}
+
+.season-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.season-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #555;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.season-dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: var(--gold);
+}
+
+.season-hint {
+    margin: 25px 0 0;
+    color: #777;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 700px) {
+    .seasons-section {
+        padding: 70px 0;
+    }
+
+    .season-stage {
+        height: 500px;
+    }
+
+    .season-slide {
+        width: min(300px, 76vw);
+        height: 440px;
+    }
+
+    .season-slide.prev {
+        transform: translateX(-80px) scale(0.72) rotateY(18deg);
+        opacity: 0.3;
+    }
+
+    .season-slide.next {
+        transform: translateX(80px) scale(0.72) rotateY(-18deg);
+        opacity: 0.3;
+    }
+
+    .season-front-content h3,
+    .season-card-back h3 {
+        font-size: 34px;
+    }
+
+    .season-controls {
+        gap: 20px;
+    }
+}
+
+.chinese-zodiac-section {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 0;
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(212, 175, 55, 0.14),
+            transparent 26%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(160, 35, 35, 0.2),
+            transparent 28%
+        ),
+        linear-gradient(135deg, #17110d, #080808 70%);
+}
+
+.chinese-zodiac-heading {
+    max-width: 680px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.chinese-zodiac-heading span {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.chinese-zodiac-heading h2 {
+    margin: 12px 0;
+    color: var(--gold);
+    font: 700 clamp(30px, 5vw, 56px) Georgia, serif;
+}
+
+.chinese-zodiac-heading p {
+    margin: 0;
+    color: #aaa;
+}
+
+.chinese-zodiac-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    perspective: 1600px;
+}
+
+.chinese-zodiac-card {
+    min-height: 300px;
+    outline: none;
+    perspective: 1100px;
+}
+
+.chinese-zodiac-card-inner {
+    position: relative;
+    height: 300px;
+    transform-style: preserve-3d;
+    transition:
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.4s ease;
+}
+
+.chinese-zodiac-card:hover .chinese-zodiac-card-inner,
+.chinese-zodiac-card:focus-visible .chinese-zodiac-card-inner,
+.chinese-zodiac-card.is-active .chinese-zodiac-card-inner {
+    transform: rotateY(180deg) rotateX(4deg) translateY(-10px);
+    filter: drop-shadow(0 22px 25px rgba(0, 0, 0, 0.5));
+}
+
+.chinese-zodiac-front,
+.chinese-zodiac-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 26px;
+    border: 1px solid rgba(212, 175, 55, 0.65);
+    border-radius: 20px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.chinese-zodiac-front {
+    justify-content: flex-end;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.2),
+            transparent 45%
+        ),
+        #24201b;
+}
+
+.chinese-zodiac-front::before,
+.chinese-zodiac-front::after {
+    position: absolute;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.chinese-zodiac-front::before {
+    top: -80px;
+    right: -65px;
+    width: 190px;
+    height: 190px;
+}
+
+.chinese-zodiac-front::after {
+    top: -40px;
+    right: -25px;
+    width: 115px;
+    height: 115px;
+}
+
+.chinese-zodiac-back {
+    justify-content: center;
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(212, 175, 55, 0.2),
+            transparent 35%
+        ),
+        #1a120d;
+    transform: rotateY(180deg);
+}
+
+.zodiac-animal {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 18px;
+    font-size: 58px;
+    line-height: 1;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.3));
+    transition: transform 0.5s ease;
+}
+
+.chinese-zodiac-card:hover .zodiac-animal {
+    transform: translateZ(35px) rotate(-8deg) scale(1.08);
+}
+
+.zodiac-year {
+    position: relative;
+    z-index: 1;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.chinese-zodiac-front h3,
+.chinese-zodiac-back h3 {
+    position: relative;
+    z-index: 1;
+    margin: 9px 0;
+    color: #fff;
+    font: 700 25px Georgia, serif;
+}
+
+.chinese-zodiac-front p,
+.chinese-zodiac-back p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: #c7c7c7;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.chinese-zodiac-back h3 {
+    color: var(--gold);
+}
+
+.zodiac-element {
+    display: inline-block;
+    margin-top: 20px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.chinese-zodiac-note {
+    max-width: 650px;
+    margin: 30px auto 0;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Контейнер для кнопок управления */
+.table-actions {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center; /* Центрирует кнопки на странице */
+}
+
+/* Стилизация интерактивных кнопок */
+.table-actions button {
+    background: #111111; /* Глубокий темный фон под тему сайта */
+    color: #d4af37;      /* Фирменный золотой цвет текста и иконок */
+    border: 2px solid #d4af37; /* Золотая рамка */
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease; /* Плавный переход при наведении */
+}
+
+/* Эффект при наведении (инверсия цветов и легкое свечение) */
+.table-actions button:hover {
+    background: #d4af37;
+    color: #111111;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+    transform: translateY(-2px); /* Легкий подъем кнопки вверх */
+}
+
+/* Эффект при нажатии */
+.table-actions button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопка чата поддержки */
+.chat-open-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #111111;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    padding: 12px 24px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+.chat-open-btn:hover {
+    background: #d4af37;
+    color: #111111;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Окно чата */
+.chat-window {
+    display: none;
+    position: fixed;
+    bottom: 85px;
+    right: 20px;
+    width: 360px;
+    height: 480px;
+    background: #1a1a1a;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.7);
+    z-index: 9999;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+/* Шапка */
+.chat-header {
+    background: #111111;
+    color: #d4af37;
+    padding: 12px 15px;
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 1px solid #d4af37;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px 6px 0 0;
+}
+.chat-close-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+.chat-close-btn:hover { color: #d4af37; }
+
+/* Область сообщений */
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #151515;
+}
+.message {
+    padding: 8px 14px;
+    border-radius: 6px;
+    max-width: 85%;
+    word-break: break-word;
+    font-size: 13px;
+    line-height: 1.4;
+}
+.message.system { 
+    background: rgba(212, 175, 55, 0.1); 
+    color: #cccccc; 
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center; 
+    max-width: 100%; 
+    font-size: 12px; 
+}
+.message.user { 
+    background: #252525; 
+    color: #ffffff;
+    align-self: flex-start; 
+    border-left: 3px solid #d4af37; 
+}
+
+/* Зона ввода */
+.chat-input-area {
+    padding: 12px;
+    background: #111111;
+    border-top: 1px solid #222222;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 6px 6px;
+}
+.chat-inputs-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+.chat-input-area input {
+    background: #222222;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.chat-input-area input:focus { 
+    border-color: #d4af37; 
+    outline: none; 
+}
+#chatSendBtn {
+    background: #d4af37;
+    border: none;
+    color: #111111;
+    padding: 0 14px;
+    margin-left: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+#chatSendBtn:hover:not(:disabled) { background: #fff; }
+#chatSendBtn:disabled { background: #555555; color: #888888; cursor: not-allowed; }
+
+
+
+@media (max-width: 1000px) {
+    .chinese-zodiac-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 720px) {
+    .chinese-zodiac-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .chinese-zodiac-card,
+    .chinese-zodiac-card-inner {
+        min-height: 285px;
+        height: 285px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chinese-zodiac-section {
+        padding: 65px 0;
+    }
+
+    .chinese-zodiac-grid {
+        grid-template-columns: 1fr;
+        max-width: 330px;
+        margin: 0 auto;
+    }
+
+    .chinese-zodiac-card,
+    .chinese-zodiac-card-inner {
+        height: 300px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chinese-zodiac-card-inner,
+    .zodiac-animal {
+        transition: none;
+    }
+}

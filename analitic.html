@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика активности — Сумма 28</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Подключаем библиотеку для графиков -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        .analytics-section {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+            min-height: 600px;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="header-ul">
+                    <li><a href="index.html" style="color: white; text-decoration: none;">Главная</a></li>
+                    <li>Контакты</li>
+                    <li><button>Найти</button><input type="number" title="найди свое число"></li>
+                    <li>
+                        <div>Заходи и узнай о нас больше:</div>
+                        <div class="qr-box">
+                            <img class="qr" src="img/qr-code.png" alt="qr">
+                            <img class="qr" src="img/qr-code.png" alt="qr">
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="analytics-section">
+        <div class="container">
+            <h2>Активность пользователей по дням недели</h2>
+            <div class="chart-container">
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="all-container-footer">
+            <div><img src="img/social-media.png" alt="social"></div>
+            <div class="container center">
+                <div class="line"></div>
+                <div class="main-container-footer">
+                    <div class="container-footer">
+                        <div class="text-footer1">на главную</div>
+                        <div class="text-footer1">помощь</div>
+                        <div class="text-footer1">числа</div>
+                    </div>
+                </div>
+            </div>
+            <div><img src="img/links.png" alt="links"></div>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('activityChart').getContext('2d');
+        const activityChart = new Chart(ctx, {
+            type: 'pie', // Тип графика: круговая диаграмма
+            data: {
+                labels: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
+                datasets: [{
+                    label: 'Активность %',
+                    // Данные взяты точно с вашего скриншота
+                    data: [12, 10, 11, 13, 18, 22, 14],
+                    backgroundColor: [
+                        '#5dade2', // ПН (Голубой)
+                        '#eb984e', // ВТ (Оранжевый)
+                        '#aab7b8', // СР (Серый)
+                        '#f4d03f', // ЧТ (Желтый)
+                        '#2e86c1', // ПТ (Синий)
+                        '#52be80', // СБ (Зеленый)
+                        '#1f618d'  // ВС (Темно-синий)
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return context.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

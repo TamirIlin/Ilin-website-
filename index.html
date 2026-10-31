@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Числовой Код — Тайны чисел и дат</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cards.css">
+
+</head>
+<body class="body">
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="header-ul">
+                    <li><a href="#">Главная</a></li>
+                    <li>
+                        <div class="search-box">
+                            <input type="number" id="numberInput" placeholder="Введите число..." min="1" max="9">
+                            <button id="findNumber">Узнать значение</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div>Заходи и узнай о нас больше:</div>
+                        <div class="qr-box">
+                            <!-- Первый QR — обычный (заглушка) -->
+                            <a href="https://youtube.com" target="_blank" title="Секретное число">
+                                <img class="qr"
+                                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://youtube.com"
+                                    alt="special-qr" style="border: 2px solid var(--gold);">
+                            </a>
+
+                            <!-- Второй QR — тот самый Рикролл -->
+                            <a href="https://youtube.com" target="_blank" title="Секретное число">
+                                <img class="qr"
+                                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://youtube.com"
+                                    alt="special-qr" style="border: 2px solid var(--gold);">
+                            </a>
+
+                            <a href="https://youtube.com" target="_blank" title="Секретное число">
+                                <img class="qr"
+                                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://youtube.com"
+                                    alt="special-qr" style="border: 2px solid var(--gold);">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="promo">
+        <div class="container">
+            <h1>Магия Чисел</h1>
+            <p>Узнайте, что скрывает ваша дата рождения или любимое число.</p>
+
+            <div id="resultArea" class="result-card">
+                <h2 id="resTitle">Выберите число от 1 до 9</h2>
+                <p id="resDesc">Или введите его в поиске выше, чтобы получить расшифровку.</p>
+            </div>
+
+            <div class="numbers-grid">
+                <!-- Быстрые кнопки -->
+                <button onclick="showInfo(1)">1</button>
+                <button onclick="showInfo(2)">2</button>
+                <button onclick="showInfo(3)">3</button>
+                <button onclick="showInfo(4)">4</button>
+                <button onclick="showInfo(5)">5</button>
+                <button onclick="showInfo(6)">6</button>
+                <button onclick="showInfo(7)">7</button>
+                <button onclick="showInfo(8)">8</button>
+                <button onclick="showInfo(9)">9</button>
+            </div>
+        </div>
+    </section>
+    <section id="analytics-section" class="analytics">
+        <div class="container">
+            <h2 style="color: #d4af37; text-align: center;">Популярность чисел</h2>
+            <div class="chart-container">
+                <canvas id="userActivityChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="zodiac-section">
+        <div class="container">
+            <h2 style="color: var(--gold); text-align: center;">Знаки Зодиака и Даты</h2>
+            <div class="table-actions">
+                <button id="exportExcelBtn">📊 Скачать Excel</button>
+                <button id="exportPdfBtn">📄 Скачать PDF</button>
+            </div>
+            <div class="table-wrapper">
+                <table class="zodiac-table">
+                    <thead>
+                        <tr>
+                            <th>Знак</th>
+                            <th>Период</th>
+                            <th>Стихия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Овен</td>
+                            <td>21 марта — 19 апреля</td>
+                            <td>Огонь</td>
+                        </tr>
+                        <tr>
+                            <td>Телец</td>
+                            <td>20 апреля — 20 мая</td>
+                            <td>Земля</td>
+                        </tr>
+                        <tr>
+                            <td>Близнецы</td>
+                            <td>21 мая — 20 июня</td>
+                            <td>Воздух</td>
+                        </tr>
+                        <tr>
+                            <td>Рак</td>
+                            <td>21 июня — 22 июля</td>
+                            <td>Вода</td>
+                        </tr>
+                        <tr>
+                            <td>Лев</td>
+                            <td>23 июля — 22 августа</td>
+                            <td>Огонь</td>
+                        </tr>
+                        <tr>
+                            <td>Дева</td>
+                            <td>23 августа — 22 сентября</td>
+                            <td>Земля</td>
+                        </tr>
+                        <tr>
+                            <td>Весы</td>
+                            <td>23 сентября — 22 октября</td>
+                            <td>Воздух</td>
+                        </tr>
+                        <tr>
+                            <td>Скорпион</td>
+                            <td>23 октября — 21 ноября</td>
+                            <td>Вода</td>
+                        </tr>
+                        <tr>
+                            <td>Стрелец</td>
+                            <td>22 ноября — 21 декабря</td>
+                            <td>Огонь</td>
+                        </tr>
+                        <tr>
+                            <td>Козерог</td>
+                            <td>22 декабря — 19 января</td>
+                            <td>Земля</td>
+                        </tr>
+                        <tr>
+                            <td>Водолей</td>
+                            <td>20 января — 18 февраля</td>
+                            <td>Воздух</td>
+                        </tr>
+                        <tr>
+                            <td>Рыбы</td>
+                            <td>19 февраля — 20 марта</td>
+                            <td>Вода</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="wrapper">
+        <h1>Узнай кто ты</h1>
+        <div class="cols">
+
+            <!-- Aries -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/aries/600/600')">
+                <div class="inner">
+                    <p>Aries</p>
+                </div>
+                    <p>Овен</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Энергичный, уверенный в себе и импульсивный. Любит новые вызовы и лидерство.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Taurus -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/taurus/600/600')">
+                <div class="inner">
+                    <p>Taurus</p>
+                </div>
+                    <p>Телец</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Практичный, надёжный и терпеливый. Ценит стабильность и комфорт, иногда упрямый.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Gemini -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/gemini/600/600')">
+                <div class="inner">
+                    <p>Gemini</p>
+                </div>
+                    <p>Близнецы</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Любопытный, адаптивный и общительный. Любит перемены, иногда непоследовательный.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Cancer -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/cancer/600/600')">
+                <div class="inner">
+                    <p>Cancer</p>
+                </div>
+                    <p>Рак</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Эмоциональный, интуитивный и заботливый. Ценит семью и близких, чуток к окружению.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Leo -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/leo/600/600')">
+                <div class="inner">
+                    <p>Leo</p>
+                </div>
+                    <p>Лев</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Уверенный, творческий и щедрый. Любит быть в центре внимания, любит радовать других.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Virgo -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/virgo/600/600')">
+                <div class="inner">
+                    <p>Virgo</p>
+                </div>
+                    <p>Дева</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Аналитичный, аккуратный и надёжный. Любит порядок и точность, может критиковать.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Libra -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/libra/600/600')">
+                <div class="inner">
+                    <p>Libra</p>
+                </div>
+                    <p>Весы</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Справедливый, дипломатичный и общительный. Ищет гармонию, иногда сомневается в решениях.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Scorpio -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/scorpio/600/600')">
+                <div class="inner">
+                    <p>Scorpio</p>
+                </div>
+                    <p>Скорпион</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Страстный, находчивый и решительный. Могут тайны и сильное внутренняя энергия.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Sagittarius -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/sagittarius/600/600')">
+                <div class="inner">
+                    <p>Arcitenens</p>
+                </div>
+                    <p>Стрелец</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Приключенческий, оптимистичный и свободолюбивый. Любит учиться и смотреть мир широко.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Capricorn -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/capricorn/600/600')">
+                <div class="inner">
+                    <p>Capricornus</p>
+                </div>
+                    <p>Козерог</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Дисциплинированный, ответственный и амбициозный. Планирует и идёт к целям.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Aquarius -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/aquarius/600/600')">
+                <div class="inner">
+                    <p>Aquarius</p>
+                </div>
+                    <p>Водолей</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Независимый, инновационный и гуманистичный. Дорогу прокладывает мыслями вне рамок.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Pisces -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+                <div class="front" style="background-image: url('https://picsum.photos/seed/pisces/600/600')">
+                <div class="inner">
+                    <p>Pisces</p>
+                </div>
+                    <p>Рыбы</p>
+                </div>
+                <div class="back">
+                <div class="inner">
+                    <p>Мечтательный, эмпатичный и творческий. Чувствителен к окружающим, часто художник или поэт.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="chinese-zodiac-section" class="chinese-zodiac-section">
+        <div class="container">
+            <div class="chinese-zodiac-heading">
+                <span>Восточный календарь</span>
+                <h2>Знаки китайского зодиака</h2>
+                <p>
+                    Наведите курсор на карточку, чтобы увидеть характеристику знака.
+                </p>
+            </div>
+
+            <div id="chineseZodiacGrid" class="chinese-zodiac-grid"></div>
+
+            <p class="chinese-zodiac-note">
+                В китайском календаре знак меняется не 1 января, а в день наступления
+                китайского Нового года.
+            </p>
+        </div>
+    </section>
+
+
+    <section class="seasons-section">
+        <div class="container">
+            <div class="section-heading">
+                <span>Круг природы</span>
+                <h2>Времена года</h2>
+                <p>Переверните карточку, чтобы узнать характер каждого сезона.</p>
+            </div>
+
+            <div class="season-slider" aria-label="Слайдер времён года">
+                <div class="season-stage">
+                    <article class="season-slide active" data-index="0">
+                        <div class="season-card">
+                            <div class="season-card-front"
+                                style="background-image: url('https://picsum.photos/seed/spring/800/1000');">
+                                <div class="season-overlay"></div>
+                                <div class="season-front-content">
+                                    <span>01 / 04</span>
+                                    <h3>Весна</h3>
+                                    <p>Время новых начинаний</p>
+                                </div>
+                            </div>
+
+                            <div class="season-card-back">
+                                <span class="season-symbol">✦</span>
+                                <h3>Весна</h3>
+                                <p>
+                                    Сезон обновления, роста и перемен. Весна помогает
+                                    оставить прошлое позади и открыть новые возможности.
+                                </p>
+                                <strong>Март — Май</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="season-slide next" data-index="1">
+                        <div class="season-card">
+                            <div class="season-card-front"
+                                style="background-image: url('https://picsum.photos/seed/summer/800/1000');">
+                                <div class="season-overlay"></div>
+                                <div class="season-front-content">
+                                    <span>02 / 04</span>
+                                    <h3>Лето</h3>
+                                    <p>Время энергии и свободы</p>
+                                </div>
+                            </div>
+
+                            <div class="season-card-back">
+                                <span class="season-symbol">☼</span>
+                                <h3>Лето</h3>
+                                <p>
+                                    Яркий и активный сезон. Лето связано с движением,
+                                    общением, путешествиями и сильными эмоциями.
+                                </p>
+                                <strong>Июнь — Август</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="season-slide hidden-slide" data-index="2">
+                        <div class="season-card">
+                            <div class="season-card-front"
+                                style="background-image: url('https://picsum.photos/seed/autumn/800/1000');">
+                                <div class="season-overlay"></div>
+                                <div class="season-front-content">
+                                    <span>03 / 04</span>
+                                    <h3>Осень</h3>
+                                    <p>Время перемен и размышлений</p>
+                                </div>
+                            </div>
+
+                            <div class="season-card-back">
+                                <span class="season-symbol">❧</span>
+                                <h3>Осень</h3>
+                                <p>
+                                    Период спокойствия и переосмысления. Осень помогает
+                                    собрать опыт и подготовиться к новому циклу.
+                                </p>
+                                <strong>Сентябрь — Ноябрь</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="season-slide hidden-slide" data-index="3">
+                        <div class="season-card">
+                            <div class="season-card-front"
+                                style="background-image: url('https://picsum.photos/seed/winter/800/1000');">
+                                <div class="season-overlay"></div>
+                                <div class="season-front-content">
+                                    <span>04 / 04</span>
+                                    <h3>Зима</h3>
+                                    <p>Время тишины и силы</p>
+                                </div>
+                            </div>
+
+                            <div class="season-card-back">
+                                <span class="season-symbol">❄</span>
+                                <h3>Зима</h3>
+                                <p>
+                                    Время внутренней концентрации и восстановления.
+                                    Зима даёт возможность замедлиться и набраться сил.
+                                </p>
+                                <strong>Декабрь — Февраль</strong>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="season-controls">
+                    <button class="season-arrow" id="seasonPrev" type="button"
+                        aria-label="Предыдущий сезон">
+                        ←
+                    </button>
+
+                    <div class="season-dots">
+                        <button class="season-dot active" type="button" data-slide="0"
+                            aria-label="Весна"></button>
+                        <button class="season-dot" type="button" data-slide="1"
+                            aria-label="Лето"></button>
+                        <button class="season-dot" type="button" data-slide="2"
+                            aria-label="Осень"></button>
+                        <button class="season-dot" type="button" data-slide="3"
+                            aria-label="Зима"></button>
+                    </div>
+
+                    <button class="season-arrow" id="seasonNext" type="button"
+                        aria-label="Следующий сезон">
+                        →
+                    </button>
+                </div>
+
+                <p class="season-hint">Нажмите на центральную карточку, чтобы перевернуть её</p>
+            </div>
+        </div>
+    </section>
+    <!-- Кнопка для открытия/закрытия чата поддержки -->
+    <button class="chat-open-btn" onclick="toggleChat()">💬 Чат поддержки</button>
+
+    <!-- Кастомное окно чата под золотой стиль сайта -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <span>Поддержка — Числовой Код</span>
+            <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message system">Здравствуйте! Задайте свой вопрос, и мы ответим вам на указанную почту.</div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-inputs-row">
+                <input type="text" id="chatUser" placeholder="Ваше имя..." style="width: 45%;">
+                <input type="email" id="chatEmail" placeholder="Ваш Email для ответа..." style="width: 50%;" required>
+            </div>
+            <div class="chat-send-row" style="margin-top: 5px; display: flex;">
+                <input type="text" id="chatInput" placeholder="Введите ваше сообщение..." style="width: 85%;">
+                <button id="chatSendBtn">➤</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="all-container-footer">
+            <div class="container-footer">
+                <div class="text-footer1">Числа</div>
+                <div class="text-footer2">Значение дат</div>
+                <div class="text-footer2">Совместимость</div>
+            </div>
+            <div class="text-footer2">© 2026 Числовой Код</div>
+        </div>
+    </footer>
+
+    <!-- Сначала сторонние библиотеки (как у вас) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+
+    <!-- Затем ваш файл скрипта (тоже с defer) -->
+    <script defer src="js/script.js"></script>
+
+</body>
+
+</html>
